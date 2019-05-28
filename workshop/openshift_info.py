@@ -23,6 +23,13 @@ class OpenShiftWorkshop(object):
         pods_api = self.oapi_client.resources.get(kind='Pod', api_version='v1')
         pod_list = pods_api.get(namespace=self.namespace)
         return self._get_running_pods(pod_list)
+    
+    def get_services(self):
+        services_api = self.oapi_client.resources.get(
+                            kind='Service',
+                            api_version='v1')
+        service_list = services_api.get(namespace=self.namespace)
+        return self._get_names(service_list)
 
     def get_services(self):
         return []
